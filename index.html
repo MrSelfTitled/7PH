@@ -1,501 +1,121 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!--
-    SEVEN POUND HALO — ONE PAGE SITE (GitHub Pages ready, single-file)
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    How to edit:
-    - Band name: <title> and the hero <h1>
-    - Background image: search for ".hero{" and replace the url(...)
-    - Accent colour: search for "--accent"
-    - Links: edit the href="" in the Links section
-    - YouTube embed: replace VIDEO_ID_HERE in the iframe src
-    - Contact email: replace YOURBOOKINGEMAIL@domain.com
-  -->
+<title>Seven Pound Halo — Official Site</title>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+:root{
+  --bg: #07070b;
+  --text:#f1f1f6;
+  --muted:#b8b8c7;
+  --line: rgba(255,255,255,0.12);
+}
 
-  <title>Seven Pound Halo — Official Site</title>
-  <meta name="description" content="Seven Pound Halo — Melbourne alternative rock / grungegaze. Music, videos, and links." />
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: var(--bg);
+  color:var(--text);
+}
 
-  <!-- HTTPS-only helpers -->
-  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-  <script>
-    // HTTPS-only redirect (works on GitHub Pages + custom domains)
-    // Note: local file testing (file://) won't redirect.
-    (function enforceHTTPS() {
-      const isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-      if (!isLocal && location.protocol !== "https:") {
-        location.replace("https://" + location.host + location.pathname + location.search + location.hash);
-      }
-    })();
-  </script>
+/* NAV */
+.topbar{
+  position:fixed;
+  top:0; left:0; right:0;
+  display:flex;
+  justify-content:space-between;
+  padding:15px;
+  background: rgba(0,0,0,0.6);
+}
 
-  <!-- Fonts: kept minimal. If you want ZERO external assets, remove this and the font-family in CSS -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- EDIT FONT HERE if you want -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&display=swap" rel="stylesheet" />
+/* HERO WITH IMAGE */
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:flex-end;
+  padding:100px 20px;
 
-  <style>
-    /*
-      SEVEN POUND HALO — STYLES (inlined)
-      How to edit:
-      - Background image: search for .hero { background: ... }
-      - Accent glow: change --accent
-      - Button style: edit .btn
-    */
+  background:
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.95)),
+    url("./images/group-black-and-white.jpg");
 
-    :root{
-      --bg: #07070b;
-      --bg2:#0c0c13;
-      --text:#f1f1f6;
-      --muted:#b8b8c7;
-      --line: rgba(255,255,255,0.12);
-      --accent: #b7ff5a; /* EDIT: accent colour */
-      --shadow: 0 18px 60px rgba(0,0,0,0.55);
-    }
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+}
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 700px at 20% 0%, rgba(183,255,90,0.12), transparent 55%),
-                  radial-gradient(900px 600px at 80% 20%, rgba(255,100,210,0.10), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      line-height:1.45;
-    }
+.hero h1{
+  font-size:60px;
+  margin:0;
+}
 
-    a{ color:inherit; text-decoration:none; }
-    a:hover{ opacity:0.92; }
+.section{
+  padding:60px 20px;
+}
 
-    .topbar{
-      position:fixed;
-      top:0; left:0; right:0;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 14px 18px;
-      background: rgba(7,7,11,0.65);
-      backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--line);
-      z-index:20;
-    }
+.video{
+  width:100%;
+  height:500px;
+}
 
-    .brand{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
+.links a{
+  display:block;
+  margin:10px 0;
+  color:white;
+}
 
-    .brand-mark{
-      display:inline-flex;
-      width:34px; height:34px;
-      align-items:center; justify-content:center;
-      border:1px solid var(--line);
-      border-radius:10px;
-      box-shadow: var(--shadow);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      font-weight:700;
-      letter-spacing:0.5px;
-    }
-
-    .brand-name{
-      font-weight:700;
-      letter-spacing:0.3px;
-    }
-
-    .nav{
-      display:flex;
-      gap:14px;
-      font-size:14px;
-      color:var(--muted);
-    }
-    .nav a{
-      padding:8px 10px;
-      border-radius:10px;
-    }
-    .nav a:hover{
-      color:var(--text);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .hero{
-      min-height: 92vh;
-      padding: 110px 18px 40px;
-      display:flex;
-      align-items:flex-end;
-
-      /* EDIT: background image (optional). Replace URL with your own hosted image */
-      background: 
-        linear-gradient(180deg, rgba(7,7,11,0.45), rgba(7,7,11,0.98)),
-        <img src="images/Group black and white.jpg">
-      background-size: cover;
-      background-position: center;
-      border-bottom:1px solid var(--line);
-    }
-
-    .hero-inner{
-      max-width: 980px;
-      width:100%;
-      margin: 0 auto;
-    }
-
-    .kicker{
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:2px;
-      font-size:12px;
-      margin:0 0 10px;
-    }
-
-    .hero h1{
-      font-size: clamp(42px, 7vw, 74px);
-      line-height:1.0;
-      margin:0 0 14px;
-      letter-spacing:-0.02em;
-    }
-
-    .sub{
-      max-width: 58ch;
-      margin: 0 0 18px;
-      color: rgba(241,241,246,0.88);
-      font-size: 16px;
-    }
-
-    .cta-row{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom: 16px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      border-radius: 14px;
-      padding: 11px 14px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      color: var(--text);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-      font-weight:600;
-    }
-    .btn:hover{ background: rgba(255,255,255,0.06); }
-
-    .btn.primary{
-      border-color: rgba(183,255,90,0.45);
-      background: rgba(183,255,90,0.14);
-      box-shadow: 0 0 0 1px rgba(183,255,90,0.18), 0 20px 60px rgba(0,0,0,0.55);
-    }
-    .btn.ghost{
-      background: transparent;
-    }
-
-    .btn.small{
-      padding: 9px 12px;
-      border-radius: 12px;
-      font-size: 14px;
-    }
-
-    .quick{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .chip{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding: 9px 12px;
-      border-radius: 999px;
-      border:1px solid var(--line);
-      background: rgba(0,0,0,0.25);
-      color: rgba(241,241,246,0.92);
-    }
-
-    .section{
-      padding: 62px 18px;
-    }
-    .section-head{
-      max-width: 980px;
-      margin: 0 auto 18px;
-    }
-    .section-head h2{
-      margin:0 0 6px;
-      font-size: 22px;
-      letter-spacing:-0.01em;
-    }
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    .cards{
-      max-width: 980px;
-      margin: 0 auto;
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .card{
-      border:1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-      box-shadow: var(--shadow);
-    }
-    .card h3{ margin:0 0 8px; }
-    .card p{ margin:0 0 14px; color: rgba(241,241,246,0.84); }
-    .card-actions{ display:flex; gap:10px; flex-wrap:wrap; }
-
-    .video-wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      border:1px solid var(--line);
-      border-radius: 18px;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      background: var(--bg2);
-    }
-    .video{
-      width:100%;
-      aspect-ratio: 16 / 9;
-      border:0;
-      display:block;
-    }
-
-    .link-grid{
-      max-width: 980px;
-      margin: 0 auto;
-      display:grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
-    .link-btn{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding: 14px 16px;
-      border-radius: 16px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,0.04);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-      font-weight:600;
-    }
-    .link-btn span{ color: var(--muted); }
-    .link-btn:hover{ background: rgba(255,255,255,0.06); }
-    .link-btn.ghost{ background: transparent; }
-
-    .contact-card{
-      max-width: 980px;
-      margin: 0 auto;
-      border:1px solid var(--line);
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(255,255,255,0.03);
-    }
-    .contact-line{ margin: 6px 0; color: rgba(241,241,246,0.9); }
-    .contact-line a{ text-decoration: underline; text-decoration-color: rgba(183,255,90,0.45); }
-
-    .fine{
-      max-width: 980px;
-      margin: 10px auto 0;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .footer{
-      padding: 26px 18px 40px;
-      border-top:1px solid var(--line);
-      color: var(--muted);
-      text-align:center;
-    }
-
-    @media (max-width: 760px){
-      .nav{ display:none; } /* Keep it simple on mobile */
-      .cards{ grid-template-columns: 1fr; }
-      .link-grid{ grid-template-columns: 1fr; }
-    }
-  </style>
+.footer{
+  text-align:center;
+  padding:20px;
+  color:#888;
+}
+</style>
 </head>
 
 <body>
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Seven Pound Halo Home">
-      <!-- EDIT: Your logo text (or replace with an image) -->
-      <span class="brand-mark">SPH</span>
-      <span class="brand-name">Seven Pound Halo</span>
-    </a>
 
-    <nav class="nav">
-      <!-- EDIT: add/remove nav items as needed -->
-      <a href="#music">Music</a>
-      <a href="#video">Video</a>
-      <a href="#links">Links</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<div class="topbar">
+  <div>Seven Pound Halo</div>
+  <div>
+    <a href="#music">Music</a>
+    <a href="#video">Video</a>
+    <a href="#links">Links</a>
+  </div>
+</div>
 
-  <main id="top">
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-inner">
-        <p class="kicker">Melbourne • Alternative Rock / Grungegaze</p>
+<section class="hero">
+  <div>
+    <h1>Seven Pound Halo</h1>
+    <p>Melbourne • Alternative Rock / Grungegaze</p>
+  </div>
+</section>
 
-        <!-- EDIT: big headline -->
-        <h1>Seven Pound Halo</h1>
+<section id="music" class="section">
+  <h2>Music</h2>
+  <p>Stream now:</p>
+  <a href="https://open.spotify.com/artist/0glhLfayMZXHMZyV4nPmqL" target="_blank">Spotify</a>
+</section>
 
-        <!-- EDIT: short line -->
-        <p class="sub">
-          New music. Loud feelings. Clean visuals. No filler.
-        </p>
+<section id="video" class="section">
+  <iframe class="video"
+    src="https://www.youtube.com/embed/KFNsTHJj93Q"
+    allowfullscreen>
+  </iframe>
+</section>
 
-        <div class="cta-row">
-          <!-- EDIT: primary buttons -->
-          <a class="btn primary" href="#music">Listen</a>
-          <a class="btn" href="#video">Watch</a>
-          <a class="btn ghost" href="#links">All Links</a>
-        </div>
+<section id="links" class="section links">
+  <h2>Links</h2>
+  <a href="https://www.instagram.com/sevenpoundhalo">Instagram</a>
+  <a href="https://www.tiktok.com/@sevenpoundhalo">TikTok</a>
+  <a href="https://youtube.com/@sevenpoundhalo">YouTube</a>
+</section>
 
-        <div class="quick">
-          <!-- EDIT: “latest” line -->
-          <span class="chip">Latest: <strong>Prescribe Me</strong> (Official Music Video)</span>
-          <span class="chip">EP: <strong>Find A Way</strong></span>
-        </div>
-      </div>
-      <div class="hero-fade" aria-hidden="true"></div>
-    </section>
+<div class="footer">
+  © 2026 Seven Pound Halo
+</div>
 
-    <!-- MUSIC -->
-    <section id="music" class="section">
-      <div class="section-head">
-        <h2>Music</h2>
-        <p>Stream the EP and newest releases.</p>
-      </div>
-
-      <div class="cards">
-        <article class="card">
-          <h3>Find A Way — EP</h3>
-          <p>Available on all streaming platforms.</p>
-          <div class="card-actions">
-            <!-- EDIT: paste your Spotify EP link -->
-            <a class="btn small" href="https://open.spotify.com/artist/0glhLfayMZXHMZyV4nPmqL" target="_blank" rel="noopener">Spotify</a>
-            <!-- EDIT: add Apple Music / Bandcamp etc -->
-            <a class="btn small ghost" href="#links">More platforms</a>
-          </div>
-        </article>
-
-        <article class="card">
-          <h3>Prescribe Me</h3>
-          <p>Heavy riffs, hypnotic textures, zero apologies.</p>
-          <div class="card-actions">
-            <!-- EDIT: paste your YouTube video link when ready -->
-            <a class="btn small" href="#video">Watch</a>
-            <a class="btn small ghost" href="https://open.spotify.com/artist/0glhLfayMZXHMZyV4nPmqL" target="_blank" rel="noopener">Stream</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- VIDEO -->
-    <section id="video" class="section">
-      <div class="section-head">
-        <h2> </h2>
-        <p> </p>
-      </div>
-
-      <div class="video-wrap">
-        <!--
-          EDIT: Replace the src with your YouTube embed link.
-          How to get embed link:
-          - Open your YouTube video
-          - Share > Embed
-          - Copy the URL from src="https://www.youtube.com/embed/VIDEO_ID"
-        -->
-        <iframe
-          class="video"
-          src="https://www.youtube.com/embed/KFNsTHJj93Q?si=p2YtGxcJ7z2BcZ7E"
-          title="Seven Pound Halo — Prescribe Me (Official Music Video)"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-      </div>
-
-      <p class="fine">
-        
-      </p>
-    </section>
-
-    <!-- LINKS -->
-    <section id="links" class="section">
-      <div class="section-head">
-        <h2>Links</h2>
-        <p>Find us online or grab some merch</p>
-      </div>
-
-      <div class="link-grid">
-        <!-- EDIT: replace hrefs with your real links -->
-        <a class="link-btn" href="https://open.spotify.com/artist/0glhLfayMZXHMZyV4nPmqL" target="_blank" rel="noopener">
-          Spotify <span>→</span>
-        </a>
-        <a class="link-btn" href="https://www.instagram.com/sevenpoundhalo" target="_blank" rel="noopener">
-          Instagram <span>→</span>
-        </a>
-        <a class="link-btn" href="https://www.tiktok.com/@sevenpoundhalo" target="_blank" rel="noopener">
-          TikTok <span>→</span>
-        </a>
-        <a class="link-btn" href="https://youtube.com/@sevenpoundhalo" target="_blank" rel="noopener">
-          YouTube <span>→</span>
-        </a>
-
-        <!-- OPTIONAL: placeholders for future pages -->
-        <a class="link-btn" href="
-https://docs.google.com/document/d/1vyxd6kzm6Np6tlhxmu3oHhQLtGShGnSRaE0ZKBNYqXg/edit?tab=t.0#heading=h.397b1g1c58a" title="Add your EPK link">
-          EPK <span>→</span>
-        </a>
-        <a class="link-btn" href="https://checkout.square.site/merchant/ML20Q0DZR476B/checkout/3USCPVQW63KSDM3GUVXTP4QA" title="Add your merch link">
-          Merch <span>→</span>
-        </a>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="section-head">
-        <h2>Contact</h2>
-        <p>Bookings, collabs, press.</p>
-      </div>
-
-      <div class="contact-card">
-        <!-- EDIT: update email + text -->
-        <p class="contact-line">
-          Email: <a href="mailto:YOURBOOKINGEMAIL@domain.com">7poundhalo@gmail.com</a>
-        </p>
-        <p class="contact-line">
-          Based in Melbourne, Australia.
-        </p>
-
-        <p class="fine">
-      
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <!-- EDIT: year/name -->
-    <p>© <span id="year"></span> Seven Pound Halo</p>
-  </footer>
-
-  <script>
-    // Auto year
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
